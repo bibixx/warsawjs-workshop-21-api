@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      td {
+        padding: 0 16px;
+      }
+
+      td:first-child {
+        padding-left: 0;
+      }
+
+      td:last-child {
+        padding-right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Endpoints</h2>
+    <table>
+      <tr>
+        <td>GET</td>
+        <td>/ping</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>POST</td>
+        <td>/auth</td>
+        <td>{ password: String, username: String }</td>
+      </tr>
+      <tr>
+        <td>GET</td>
+        <td>/posts</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>POST</td>
+        <td>/posts</td>
+        <td>FormData({ username: String, title: String, image: mimeType = "image/jpg", "image/jpeg", "image/png" })</td>
+      </tr>
+      <tr>
+        <td>GET</td>
+        <td>/posts/:postId</td>
+        <td>{ postId: string, username: String, body: String, position: { x: Number, y: Number } }</td>
+      </tr>
+      <tr>
+        <td>POST</td>
+        <td>/posts/:postId/comments</td>
+      </tr>
+    </table>
+
+    <h2>Demos</h2>
+    <a href="/demo">/demo</a>
+  </body>
+</html>
