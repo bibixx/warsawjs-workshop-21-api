@@ -15,7 +15,7 @@
       console.log(pair[0]+ ', ' + pair[1]); 
     }
 
-    fetch("http://localhost:3000/posts/", {
+    fetch("/posts/", {
       method: 'POST',
       body: formData,
     });
