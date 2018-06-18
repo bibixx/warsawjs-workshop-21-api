@@ -7,6 +7,7 @@
     const positionX = document.querySelector("#posX").value;
     const positionY = document.querySelector("#posY").value;
     const id = document.querySelector("#id").value;
+    const username = document.querySelector("#username").value;
 
     fetch(`/posts/${id}/comments`, {
       method: 'POST',

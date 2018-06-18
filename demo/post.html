@@ -8,9 +8,17 @@
 </head>
 <body>
   <h1>Post</h1>
+  <table>
+    <tr>
+      <td>POST</td>
+      <td>/posts</td>
+      <td>FormData({ username: String, title: String, image: mimeType = "image/jpg", "image/jpeg", "image/png" })</td>
+    </tr>
+  </table>
   <form id="form">
-    <input type="file" name="image-src" id="image" /><br>
-    <textarea name="body" id="body" cols="30" rows="10"></textarea><br>
+    Username: <input type="file" name="image-src" id="username" /><br>
+    File: <input type="file" name="image-src" id="image" /><br>
+    Body: <textarea name="body" id="body" cols="30" rows="10"></textarea><br>
     <button>Submit</button>
   </form>
 

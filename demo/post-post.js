@@ -5,8 +5,9 @@
     const formData = new FormData();
     const fileInputElement = document.querySelector("#image");
     const bodyInputElement = document.querySelector("#body");
+    const usernameInputElement = document.querySelector("#username");
 
-    formData.append("username", "Groucho");
+    formData.append("username", usernameInputElement.value);
     formData.append("title", bodyInputElement.value);
 
     formData.append("image", fileInputElement.files[0]);

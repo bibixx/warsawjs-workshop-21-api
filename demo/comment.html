@@ -8,8 +8,16 @@
 </head>
 <body>
   <h1>Comment</h1>
+  <table>
+    <tr>
+      <td>POST</td>
+      <td>/posts/:postId/comments</td>
+      <td>{ postId: string, username: String, body: String, position: { x: Number, y: Number } }</td>
+    </tr>
+  </table>
   <form id="form">
     Id: <input type="text" name="id" id="id" value="5b266928835cb348b7a318fb" /><br>
+    Username: <input type="text" name="username" id="username" /><br>
     Body: <textarea name="body" id="body" cols="30" rows="10"></textarea><br>
     X: <input type="number" name="posX" id="posX" /><br>
     Y: <input type="number" name="posY" id="posY" /><br>
