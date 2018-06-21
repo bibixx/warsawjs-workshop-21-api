@@ -72,6 +72,6 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
-// cronDeleteFiles();
+cronDeleteFiles();
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}!`))
