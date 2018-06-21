@@ -48,7 +48,18 @@ const createPost = async (postId, owner, body, position) => {
   await newComment.save();
   await post.save();
 
-  return {};
+  const comment = {
+    id: newComment._id,
+    position: newComment.position,
+    date: newComment.date,
+    username: newComment.owner,
+    body: newComment.body,
+  }
+
+  return {
+    ok: true,
+    comment
+  };
 }
 
 const expressPost = async (req, res) => {

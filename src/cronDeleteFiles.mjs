@@ -17,11 +17,7 @@ export const deleteFiles = async (req, res, next) => {
 
     await new Promise((resolveDir) => {
       fs.readdir(multerSaveDest, async (err, files) => {
-        const excludedFiles = [".gitkeep"];
-
-        if (protectedPost) {
-          excludedFiles.push(protectedPost.image);
-        }
+        const excludedFiles = [".gitkeep", "instgr.png"];
 
         const filteredFiles = files.filter(f => !excludedFiles.includes(f));
 
