@@ -55,7 +55,7 @@ export const cronDeleteFiles = () => {
   const CronJob = cron.CronJob;
   const cronPattern = process.env.CRON_PATTERN || "0 */10 * * * *";
 
-  deleteFiles();
+  // deleteFiles();
 
   const job = new CronJob({
     cronTime: cronPattern,
