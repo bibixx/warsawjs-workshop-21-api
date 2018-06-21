@@ -36,7 +36,7 @@ export const isDeleting = async (req, res, next) => {
 
 export const cronDeleteFiles = () => {
   const CronJob = cron.CronJob;
-  const cronPattern = process.env.CRON_PATTERN || "* */10 * * * *";
+  const cronPattern = process.env.CRON_PATTERN || "0 */10 * * * *";
 
   const job = new CronJob({
     cronTime: cronPattern,
