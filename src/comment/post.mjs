@@ -56,18 +56,16 @@ const createPost = async (postId, owner, body, position) => {
     body: newComment.body,
   }
 
-  return {
-    ok: true,
-    comment
-  };
+  return comment;
 }
 
 const expressPost = async (req, res) => {
   try {
-    await createPost(req.params.postId, req.body.username, req.body.body, req.body.position);
+    const comment = await createPost(req.params.postId, req.body.username, req.body.body, req.body.position);
 
     res.json({
       ok: true,
+      comment,
     });
   } catch ({ errors = [], status = 500 }) {
     return res.status(status).json({
