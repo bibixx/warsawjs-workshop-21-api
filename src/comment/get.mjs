@@ -11,8 +11,6 @@ const getPost = async (postId) => {
     };
   }
 
-  console.log(post.comments);
-
   const comments =
     (await Promise.all(post.comments.map(c => Comment.findById(c))))
     .map(com => ({

@@ -44,8 +44,20 @@ const createPost = async (req, res) => {
 
   await post.save();
 
+  const postDataRaw = post.getPostData();
+
+  const postData = {
+    id: postDataRaw.id,
+    image: postDataRaw.image,
+    title: postDataRaw.title,
+    owner: postDataRaw.owner,
+    date: postDataRaw.date,
+    commentsCount: postDataRaw.commentsCount
+  };
+
   return res.json({
     ok: true,
+    post: postData
   });
 }
 
