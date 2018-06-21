@@ -44,7 +44,7 @@ const createPost = async (req, res) => {
 
   await post.save();
 
-  const postDataRaw = post.getPostData();
+  const postDataRaw = post.getPostData(req.secure, req.get('host'));
 
   const postData = {
     id: postDataRaw.id,
