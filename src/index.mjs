@@ -34,9 +34,17 @@ app.get("/ping", (req, res) => {
 })
 
 app.post("/auth", (req, res) => {
-  if ( !req.body.username || !req.body.password ) {
+  if ( !req.body.username ) {
     return res.status(401).json({
       ok: false,
+      errors: ["username is a required field"]
+    });
+  }
+
+  if ( !req.body.password ) {
+    return res.status(401).json({
+      ok: false,
+      errors: ["password is a required field"]
     });
   }
 
