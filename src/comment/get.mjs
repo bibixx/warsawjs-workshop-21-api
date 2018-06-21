@@ -16,6 +16,7 @@ const getPost = async (postId) => {
     .map(com => ({
       id: com._id,
       position: com.position,
+      date: com.date,
       username: com.owner,
       body: com.body,
     }));
