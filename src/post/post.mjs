@@ -17,6 +17,8 @@ const createPost = async (req, res) => {
     }
   } catch (err) {
     if (req.file) {
+      console.log(req.file.path);
+
       try {
         fs.unlink(req.file.path, () => {});
       } catch (err) {
