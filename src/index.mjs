@@ -4,9 +4,9 @@ import cors from "cors";
 import bodyParser from "body-parser";
 
 import { get as postGet, post as postPost, getById as postGetById } from "./post";
-import { post as commentPost } from "./comment";
+import { post as commentPost, get as commentGet } from "./comment";
 import { upload, multerSaveDest } from "./utils"
-import { isDeleting, cronDeleteFiles } from "./cronDeleteFiles";
+import { isDeleting, cronDeleteFiles, deleteFiles } from "./cronDeleteFiles";
 import path from "path";
 
 const PORT = process.env.PORT || 3000;
@@ -62,7 +62,16 @@ app.get('/posts/:id', postGetById);
 app.post('/posts/', upload, postPost);
 
 app.post('/posts/:postId/comments/', bodyParser.json(), commentPost);
+app.get('/posts/:postId/comments/', bodyParser.json(), commentGet);
 
-cronDeleteFiles();
+
+if (process.env.NODE_ENV === "development") {
+  app.get('/delete', async (req, res) => {
+    await deleteFiles();
+    res.json({});
+  });
+}
+
+// cronDeleteFiles();
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}!`))

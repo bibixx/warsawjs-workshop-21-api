@@ -1,5 +1,6 @@
 import cron from "cron";
-import emptyFolder from "empty-folder";
+import fs from "fs";
+import path from "path";
 import { multerSaveDest } from "./utils"
 import Post from "./post/Post.model";
 import Comment from "./comment/Comment.model";
@@ -10,15 +11,35 @@ export const deleteFiles = async (req, res, next) => {
   deletingPromise = new Promise(async (resolve) => {
     console.log("Started deleting all posts!");
 
-    const emptyPromise = new Promise((emptyTimeout) => {
-      emptyFolder(multerSaveDest, false, emptyTimeout);
-    });
+    console.log(multerSaveDest);
 
-    const postPromise = Post.remove({});
-    const commentPromise = Comment.remove({});
+    const protectedPost = await Post.findOne({ "title": "My first UI project!" });
+
+    await new Promise((resolveDir) => {
+      fs.readdir(multerSaveDest, async (err, files) => {
+        const excludedFiles = [".gitkeep"];
+
+        if (protectedPost) {
+          excludedFiles.push(protectedPost.image);
+        }
+
+        const filteredFiles = files.filter(f => !excludedFiles.includes(f));
+
+        filteredFiles.map(f => new Promise((resolveRemove) => {
+          fs.unlink(path.join(multerSaveDest, f), (err) => {
+            resolveRemove();
+          });
+        }));
+
+        await Promise.all(filteredFiles);
+        resolveDir();
+      })
+    });
+    
+    const postPromise = Post.remove({ _id: { $ne: protectedPost._id } });
+    const commentPromise = Comment.remove({ _id: { $nin: protectedPost.comments } });
 
     await Promise.all([
-      emptyPromise,
       postPromise,
       commentPromise,
     ]);

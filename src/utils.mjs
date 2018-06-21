@@ -5,8 +5,6 @@ import multer from "multer";
 
 export const multerSaveDest = path.resolve("./uploads");
 
-console.log(multerSaveDest);
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, multerSaveDest)
