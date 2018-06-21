@@ -13,7 +13,7 @@ export const deleteFiles = async (req, res, next) => {
 
     console.log(multerSaveDest);
 
-    const protectedPost = await Post.findOne({ "title": "My first UI project!" });
+    const protectedPost = await Post.findOne({ "title": "My first UI project!" }) || {};
 
     await new Promise((resolveDir) => {
       fs.readdir(multerSaveDest, async (err, files) => {
